@@ -1,6 +1,6 @@
 # jux-slider
 
-it is a web-component which meant, to use include the `jux-slider.js` on your website.
+it is a web-component which means, to use it include the `jux-slider.js` on your website.
 
 ```<script src="jux-slider.js"></script>```
 
@@ -15,4 +15,4 @@ then use it on the site like:
 ></jux-slider>
 ````
 
-see in [action](https://sladwig.github.io/jux-slider)
+see in [action](https://sladwig.github.io/jux-slider/src)
