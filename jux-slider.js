@@ -190,7 +190,7 @@ class JuxSlider extends HTMLElement {
     this.positionInPercent = percent
     let position = this.percentToPos(percent)
     setWidthOf(this.$left, position)
-    setWidthOf(this.$division, position)
+    setWidthOf(this.$division, position-(this.borderWidth/2))
     setWidthOf(this.$right, (this.fullWidth - position))
   }
   posToPercent(pos) {
@@ -202,12 +202,13 @@ class JuxSlider extends HTMLElement {
   connectedCallback() {
     this.innerHTML = this.render();
 
-    this.borderWidth = parseInt(this.getAttribute('border-width') || getComputedStyle(this).getPropertyValue(
-      "--border-width")) || 4;
-    this.borderColor = this.getAttribute('border-color') || getComputedStyle(this).getPropertyValue(
-      "--border-color")
+    this.borderWidth = parseInt(this.getAttribute('border-width') || parseInt(getComputedStyle(this).getPropertyValue("--border-width"))) || 4;
+    this.borderColor = this.getAttribute('border-color') || getComputedStyle(this).getPropertyValue("--border-color")
+    this.borderRadius = this.getAttribute('border-radius') || getComputedStyle(this).getPropertyValue("--border-radius")
+
     this.style.setProperty('--border-width', pos(this.borderWidth));
     this.style.setProperty('--border-color', this.borderColor);
+    this.style.setProperty('--border-radius', this.borderRadius);
 
     this.$left = this.querySelector('.images .left');
     this.$right = this.querySelector('.images .right');
