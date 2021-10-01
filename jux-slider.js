@@ -1,4 +1,4 @@
-const cssStyle = `
+const juxSliderCssStyle = `
 :root {
   --border-width:12px;
   --border-radius:12px;
@@ -243,7 +243,7 @@ class JuxSlider extends HTMLElement {
   }
 
   render() {
-    return `<style>${cssStyle}</style>
+    return `<style>${juxSliderCssStyle}</style>
   <div class="wrapper">
     <div class="images">
       <div class="left"><div class="img"></div></div>
