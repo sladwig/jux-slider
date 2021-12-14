@@ -69,7 +69,6 @@ const juxSliderCssStyle = `
   will-change: width;
 }
 .left .img, .right .img{
-  background-size: cover;
   width: 100%;
   position: relative;
   height:100%;
@@ -154,6 +153,7 @@ function updateHandlePositionOf(juxSlider) {
   return (mouse) => {
     if (!mouse.buttons) {
       this.removeEventListener('mousemove', juxSlider.updateHandler)
+      this.removeEventListener('touchmove', juxSlider.updateHandler)
     } else {
       if (requested) cancelAnimationFrame(requested);
       requested = requestAnimationFrame(() => {
@@ -183,8 +183,12 @@ class JuxSlider extends HTMLElement {
     this.setSliderTo(this.positionInPercent)
   }
   updateImageSrc() {
+    // debugger
     this.$leftImg.style.backgroundImage = `url(${this.getAttribute('left-src')})`;
-    this.$rightImg.style.backgroundImage = `url(${this.getAttribute('right-src')})`;
+    this.$rightImg.style.backgroundImage = `url(${this.getAttribute('right-src')});`;
+    this.$leftImg.style.backgroundSize = "cover"
+    this.$rightImg.style.backgroundSize = "cover"
+
   }
   setSliderTo(percent) {
     this.positionInPercent = percent
@@ -223,17 +227,23 @@ class JuxSlider extends HTMLElement {
     this.updateImageSrc();
     this.updateImageWidth();
 
-    this.addEventListener('mousedown', (mouse) => {
+    const handleClick = (mouse) => {
       this.$wrapper.classList.add('clicked')
       this.updateHandler(mouse)
       setTimeout(() => {
         this.$wrapper.classList.remove('clicked')
         this.addEventListener('mousemove', this.updateHandler)
+        this.addEventListener('touchmove', this.updateHandler)
       }, 75)
-    })
+    }
+    this.addEventListener('mousedown', handleClick)
+    this.addEventListener('touchstart', handleClick)
 
     this.addEventListener('mouseup', () => {
       this.removeEventListener('mousemove', this.updateHandler)
+    })
+    this.addEventListener('touchend', () => {
+      this.removeEventListener('touchmove', this.updateHandler)
     })
 
     this.observer = new ResizeObserver(() => this.updateImageWidth())
