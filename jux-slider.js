@@ -152,7 +152,7 @@ function offsetOfMouseOn({ pageX, clientX }, { fullWidth, borderWidth, $wrapper,
 function updateHandlePositionOf(juxSlider) {
   let requested = false
   return (mouse) => {
-    if (!mouse.buttons) {
+    if (mouse.type.startsWith('mouse') && !mouse.buttons) {
       this.removeEventListener('mousemove', juxSlider.updateHandler)
     } else {
       if (requested) cancelAnimationFrame(requested);
@@ -226,7 +226,6 @@ class JuxSlider extends HTMLElement {
     this.updateImageWidth();
 
     const handleClick = (moveEvent = "mousemove") => (mouse) => {
-      console.log('mouseevent', moveEvent, mouse)
       this.$wrapper.classList.add('clicked')
       this.updateHandler(mouse)
       setTimeout(() => {
