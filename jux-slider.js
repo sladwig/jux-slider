@@ -183,12 +183,10 @@ class JuxSlider extends HTMLElement {
     this.setSliderTo(this.positionInPercent)
   }
   updateImageSrc() {
-    // debugger
     this.$leftImg.style.backgroundImage = `url(${this.getAttribute('left-src')})`;
-    this.$rightImg.style.backgroundImage = `url(${this.getAttribute('right-src')});`;
+    this.$rightImg.style.backgroundImage = `url(${this.getAttribute('right-src')})`;
     this.$leftImg.style.backgroundSize = "cover"
     this.$rightImg.style.backgroundSize = "cover"
-
   }
   setSliderTo(percent) {
     this.positionInPercent = percent
@@ -216,7 +214,7 @@ class JuxSlider extends HTMLElement {
 
     this.$left = this.querySelector('.images .left');
     this.$right = this.querySelector('.images .right');
-    this.$division = this.querySelector('.controls .left');
+    this.$division = this.querySelector('.jux-ctrl .left');
     this.$rightArea = this.querySelector('.right .img');
     this.$wrapper = this.querySelector('.wrapper');
     this.$leftImg = this.querySelector(".left .img");
