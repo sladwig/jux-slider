@@ -154,7 +154,6 @@ function updateHandlePositionOf(juxSlider) {
   return (mouse) => {
     if (!mouse.buttons) {
       this.removeEventListener('mousemove', juxSlider.updateHandler)
-      this.removeEventListener('touchmove', juxSlider.updateHandler)
     } else {
       if (requested) cancelAnimationFrame(requested);
       requested = requestAnimationFrame(() => {
@@ -226,7 +225,8 @@ class JuxSlider extends HTMLElement {
     this.updateImageSrc();
     this.updateImageWidth();
 
-    const handleClick = (moveEvent = "mousemove") =>(mouse) => {
+    const handleClick = (moveEvent = "mousemove") => (mouse) => {
+      console.log('mouseevent', moveEvent, mouse)
       this.$wrapper.classList.add('clicked')
       this.updateHandler(mouse)
       setTimeout(() => {

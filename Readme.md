@@ -15,4 +15,4 @@ then use it on the site like:
 ></jux-slider>
 ````
 
-see in [action](https://sladwig.github.io/jux-slider/src)
+see in [action](https://sladwig.github.io/jux-slider/)
