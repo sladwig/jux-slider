@@ -226,7 +226,7 @@ class JuxSlider extends HTMLElement {
     this.updateImageSrc();
     this.updateImageWidth();
 
-    const handleClick = (mouse, moveEvent = "mousemove") => {
+    const handleClick = (moveEvent = "mousemove") =>(mouse) => {
       this.$wrapper.classList.add('clicked')
       this.updateHandler(mouse)
       setTimeout(() => {
