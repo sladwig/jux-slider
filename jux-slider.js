@@ -192,7 +192,7 @@ class JuxSlider extends HTMLElement {
     this.positionInPercent = percent
     let position = this.percentToPos(percent)
     setWidthOf(this.$left, position)
-    setWidthOf(this.$division, position-(this.borderWidth/2))
+    setWidthOf(this.$division, position) //-(this.borderWidth/2))
     setWidthOf(this.$right, (this.fullWidth - position))
   }
   posToPercent(pos) {
