@@ -72,6 +72,7 @@ const juxSliderCssStyle = `
   width: 100%;
   position: relative;
   height:100%;
+  background-repeat: no-repeat;
   user-select: none;
 }
 .right .img {
