@@ -45,7 +45,7 @@ const juxSliderCssStyle = `
   align-items: stretch;
   overflow: hidden;
 }
-.controls {
+.jux-ctrl {
   grid-column: 1;
   box-sizing: border-box;
   grid-row: 1;
@@ -232,9 +232,24 @@ class JuxSlider extends HTMLElement {
       }, 75)
     })
 
+    this.addEventListener('touchstart', (mouse) => {
+      this.$wrapper.classList.add('clicked')
+      this.updateHandler(mouse)
+      setTimeout(() => {
+        this.$wrapper.classList.remove('clicked')
+        this.addEventListener('touchmove', this.updateHandler)
+      }, 75)
+    })
+
+
     this.addEventListener('mouseup', () => {
       this.removeEventListener('mousemove', this.updateHandler)
     })
+
+    this.addEventListener('touchend', () => {
+      this.removeEventListener('touchmove', this.updateHandler)
+    })
+
 
     this.observer = new ResizeObserver(() => this.updateImageWidth())
     this.observer.observe(this.$wrapper)
@@ -250,7 +265,7 @@ class JuxSlider extends HTMLElement {
       <div class="left"><div class="img"></div></div>
       <div class="right"><div class="img"></div></div>
     </div>
-    <div class="controls">
+    <div class="jux-ctrl">
       <div class="left"></div>
       <div class="line">
         <div class="divide">
